@@ -1,0 +1,21 @@
+(A) AbstractCard[] cards = {new OtherCard("QD"),new OtherCard("9D"),new OtherCard("JD"),new OtherCard("AD")};
+[QD,9D,JD,AD]
+[9D,QD,AD,JD]
+[9D,AD,QD,JD]
+[AD,9D,QD,JD]
+[AD,9D,QD,JD]
+(B) AbstractCard[] cards = {new OtherCard("QD"),new Card("9D"),new Card("JD"),new OtherCard("AD")};
+[QD,9D,JD,AD]
+[9D,QD,AD,JD]
+[9D,AD,QD,JD]
+[9D,AD,QD,JD]
+(C) AbstractCard[] cards = {new OtherCard("QD"),new Card("9D"),new Card("JD"),new OtherCard("AD")};
+[QD,9D,JD,AD]
+[9D,JD,AD,QD]
+[9D,JD,AD,QD]
+
+The lists differ as it depends as to which compareTo method is called. The order differs from which subclass is called.
+This is because of the order for the otherCard compareTo changes order compared to the regular card compareTo.
+This means that when we call compare to depending on which subclass calls the compareTo so in case C JK and QD are
+swapped as JD calls comparedTo rather than QD in case C. So you must take care as to which subclass the comparedTo is being
+called from when it is Overriden.
